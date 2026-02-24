@@ -11,3 +11,5 @@ TEST_PATH = f"{DATA_PATH}/test"
 MODELS_PATH = '../models'
 BEST_MODEL_PATH = f"{MODELS_PATH}/best_model.keras"
 FINAL_MODEL_PATH = f"{MODELS_PATH}/model.keras"
+
+MODEL_METRICS = f"{MODELS_PATH}/model_metrics.csv"

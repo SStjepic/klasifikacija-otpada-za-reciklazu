@@ -2,6 +2,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 import keras
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.mobilenet_v3 import preprocess_input
@@ -21,16 +22,20 @@ if __name__ == '__main__':
         shuffle=False
     )
 
-    print("Pokretanje evaluacije na test skupu...")
     predictions = model.predict(test_data)
     y_pred = np.argmax(predictions, axis=1)
     y_true = test_data.classes
     class_labels = list(test_data.class_indices.keys())
 
+    report_dict = classification_report(y_true, y_pred, target_names=class_labels, output_dict=True)
+    df_report = pd.DataFrame(report_dict).transpose().round(3)
+    
+    df_report.to_csv(config.MODEL_METRICS, index=True)
+
     print("\n" + "*"*30)
     print("IZVEŠTAJ KLASIFIKACIJE")
     print("*"*30)
-    print(classification_report(y_true, y_pred, target_names=class_labels))
+    print(df_report)
 
     cm = confusion_matrix(y_true, y_pred)
     plt.figure(figsize=(10, 8))
@@ -40,7 +45,7 @@ if __name__ == '__main__':
     plt.ylabel('Stvarna klasa')
     plt.xlabel('Predviđena klasa')
     
-    report_path = '../models/test_results.png'
+    report_path = os.path.join(config.MODELS_PATH, 'test_results.png')
     plt.savefig(report_path)
-    print(f"\nMatrica konfuzije je sačuvana.")
+    print("Matrica konfuzije je sačuvana.")
     plt.show()
