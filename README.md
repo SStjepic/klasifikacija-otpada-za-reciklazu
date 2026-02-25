@@ -44,7 +44,7 @@ klasifikacija-otpada-za-reciklazu/
 
 ```bash
    git clone https://github.com/SStjepic/klasifikacija-otpada-za-reciklazu.git
-   cd SerbianBanknoteRecognition
+   cd klasifikacija-otpada-za-reciklazu/
 ```
 
 2. Kreiranje virtuelnog oktuženja
