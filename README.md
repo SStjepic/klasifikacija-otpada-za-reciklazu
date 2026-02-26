@@ -1,5 +1,9 @@
 # klasifikacija-otpada-za-reciklazu
 
+## Poster
+
+![poster](poster.png)
+
 ## Struktura projekta
 
 ```bash
