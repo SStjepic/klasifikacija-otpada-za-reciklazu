@@ -33,7 +33,7 @@ if __name__ == '__main__':
     df_report.to_csv(config.MODEL_METRICS, index=True)
 
     print("\n" + "*"*30)
-    print("IZVEŠTAJ KLASIFIKACIJE")
+    print("REZULTATI")
     print("*"*30)
     print(df_report)
 
@@ -47,5 +47,30 @@ if __name__ == '__main__':
     
     report_path = os.path.join(config.MODELS_PATH, 'test_results.png')
     plt.savefig(report_path)
-    print("Matrica konfuzije je sačuvana.")
+    print("Confusion matrix je sačuvana.")
+    plt.show()
+    
+    
+    df = pd.read_csv(config.TRAIN_LOG) 
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(df['epoch'], df['accuracy'], label='Trening Tačnost', marker='o', linewidth=2)
+    plt.plot(df['epoch'], df['val_accuracy'], label='Validaciona Tačnost', marker='o', linewidth=2)
+    plt.title('Training and Validation Accuracy', fontsize=14)
+    plt.xlabel('Epoha', fontsize=12)
+    plt.ylabel('Accuracy', fontsize=12)
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.savefig('../models/accuracy_plot.png', dpi=300)
+    plt.show()
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(df['epoch'], df['loss'], label='Trening Gubitak', marker='o', linewidth=2, color='red')
+    plt.plot(df['epoch'], df['val_loss'], label='Validacioni Gubitak', marker='o', linewidth=2, color='orange')
+    plt.title('Training and Validation Loss', fontsize=14)
+    plt.xlabel('Epoha', fontsize=12)
+    plt.ylabel('Loss', fontsize=12)
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.savefig('../models/loss_plot.png', dpi=300)
     plt.show()

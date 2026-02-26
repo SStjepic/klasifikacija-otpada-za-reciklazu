@@ -23,7 +23,9 @@ klasifikacija-otpada-za-reciklazu/
 │      ├── train/
 │      └── val/
 ├── models/
+│    ├── accuracy_plot.png
 │    ├── best_model.keras
+│    ├── loss_plot.png
 │    ├── model_metrics.csv
 │    ├── model.keras
 │    ├── test_results.png
@@ -146,6 +148,12 @@ Nakon izvršavanja skripte _test.py_, generiše se klasifikacioni izveštaj koji
 
 Model je postigao ukupnu tačnost od 96.3% na test skupu od 3116 slika.
 Najslabije performanse zabeležene su kod klasa plastic i white-glass, dok su najbolje performanse ostvarene kod klasa biological i clothes.
+
+**Loss plot**
+![loss_plot](models/loss_plot.png.png)
+
+**Accuracy plot**
+![accuracy_plot](models/accuracy_plot.png.png)
 
 ## Upotreba
 
